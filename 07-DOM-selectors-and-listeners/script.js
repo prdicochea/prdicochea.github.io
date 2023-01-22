@@ -1,8 +1,10 @@
-var button = document.getElementById("enter");
-var input = document.getElementById("userinput");
-var ul = document.querySelector("ul");
-var li = document.getElementById("list");
-var delButton = document.querySelector("button");
+let button = document.getElementById("enter");
+let input = document.getElementById("userinput");
+let ul = document.querySelector("ul");
+let li = document.getElementById("list");
+var delButton = "";
+var delButtonArray = "";
+
 
 
 function inputLength() {
@@ -10,9 +12,14 @@ function inputLength() {
 }
 
 function createListElement() {
-	var li = document.createElement("li");
+	let li = document.createElement("li");
+	let br = document.createElement("br");
+	let btn = document.createElement("img");
+	btn.src = "Delete-button.svg";
 	li.appendChild(document.createTextNode(input.value));
+	ul.appendChild(br);
 	ul.appendChild(li);
+	ul.appendChild(btn);
 	input.value = "";
 }
 
@@ -20,12 +27,14 @@ function addListAfterClick() {
 	if (inputLength() > 0) {
 		createListElement();
 	}
+	refreshListeners();
 }
 
 function addListAfterKeypress(event) {
 	if (inputLength() > 0 && event.keyCode === 13) {
 		createListElement();
 	}
+	refreshListeners();
 }
 
 function toggleDoneOnAndOff(e){
@@ -35,10 +44,20 @@ function toggleDoneOnAndOff(e){
 }
 
 function removeLi(e){
-	console.log("gotcha");
+	refreshListeners();
+	console.log(e.target.previousSibling);
+}
+
+function refreshListeners(){
+	delButton = document.querySelectorAll("img");
+	delButtonArray = [...delButton];
+	delButtonArray.forEach((item)=>{
+		item.addEventListener("click", removeLi);
+		console.log("items refreshed");
+	})
 }
 
 button.addEventListener("click", addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
 ul.addEventListener("click", toggleDoneOnAndOff);
-delButton.addEventListener("click", removeLi);	
+refreshListeners();
