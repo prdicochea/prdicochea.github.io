@@ -26,15 +26,17 @@ function createListElement() {
 function addListAfterClick() {
 	if (inputLength() > 0) {
 		createListElement();
+		refreshListeners();
 	}
-	refreshListeners();
+	
 }
 
 function addListAfterKeypress(event) {
 	if (inputLength() > 0 && event.keyCode === 13) {
 		createListElement();
+		refreshListeners();
 	}
-	refreshListeners();
+	
 }
 
 function toggleDoneOnAndOff(e){
@@ -44,8 +46,9 @@ function toggleDoneOnAndOff(e){
 }
 
 function removeLi(e){
-	refreshListeners();
-	console.log(e.target.previousSibling);
+	e.target.parentNode.removeChild(e.target.previousSibling);
+	e.target.parentNode.removeChild(e.target.previousSibling);
+	e.target.remove();
 }
 
 function refreshListeners(){
@@ -60,4 +63,5 @@ function refreshListeners(){
 button.addEventListener("click", addListAfterClick);
 input.addEventListener("keypress", addListAfterKeypress);
 ul.addEventListener("click", toggleDoneOnAndOff);
+
 refreshListeners();
