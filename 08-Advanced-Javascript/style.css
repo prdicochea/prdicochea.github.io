@@ -1,0 +1,41 @@
+body{
+    background: linear-gradient(to right, #2fd4c3, #2a4fc0);
+    text-align: center;
+}
+
+input{
+    text-align: inherit;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 
+                        "a b b"
+                        "c b b";
+    grid-template-rows: repeat(auto-fill);
+    
+}
+
+.item1{
+    grid-area: a;
+}
+.item2{
+    grid-area: c;
+}
+.item3{
+    grid-area: b;
+}
+
+img{
+    min-width: 150px;
+    max-width: 100%;
+    justify-content: center;
+    vertical-align: auto;
+}
+
+figcaption{
+    text-align: center;
+}
